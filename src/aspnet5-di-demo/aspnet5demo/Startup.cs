@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using aspnet5demo.Models;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Dnx.Runtime;
@@ -30,6 +31,9 @@ namespace aspnet5demo
         {
             // Add MVC services to the services container.
             services.AddMvc();
+
+            //Add Dependency Injection Resolution
+            services.AddTransient<IMessageGenerator, MessageGenerator>(); 
 
             // Uncomment the following line to add Web API services which makes it easier to port Web API 2 controllers.
             // You will also need to add the Microsoft.AspNet.Mvc.WebApiCompatShim package to the 'dependencies' section of project.json.

@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using aspnet5demo.Models;
 
 namespace aspnet5demo.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IMessageGenerator _messageGenerator;
+        
+        public HomeController(IMessageGenerator messageGenerator)
+        {
+            _messageGenerator = messageGenerator;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -15,7 +23,7 @@ namespace aspnet5demo.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = _messageGenerator.GetWelcomeMessage("World");
 
             return View();
         }
